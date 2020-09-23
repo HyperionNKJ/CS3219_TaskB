@@ -22,7 +22,6 @@ exports.index = function(req, res) {
 // Handle create module actions
 exports.new = function(req, res) {
   var _module = new Module();
-  console.log(req.body)
   _module.name = req.body.name ? req.body.name : _module.name;
   _module.code = req.body.code;
   _module.mc = req.body.mc;
