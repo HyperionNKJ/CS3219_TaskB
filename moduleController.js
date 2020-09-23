@@ -8,12 +8,15 @@ exports.index = function(req, res) {
         status: "error",
         message: err,
       });
+      console.log("GET /modules FAILED")
+    } else {
+      res.json({
+        status: "success",
+        message: "Modules retrieved successfully",
+        data: modules
+      });
+      console.log("GET /modules SUCCESS")
     }
-    res.json({
-      status: "success",
-      message: "Modules retrieved successfully",
-      data: modules
-    });
   });
 };
 // Handle create module actions
@@ -28,12 +31,15 @@ exports.new = function(req, res) {
   _module.save(function(err) {
     if (err) {
       res.json(err);
+      console.log("POST /modules FAILED")
+    } else {
+      res.json({
+        status: "success",
+        message: 'New module created!',
+        data: _module
+      });
+      console.log("POST /modules SUCCESS")
     }
-    res.json({
-      status: "success",
-      message: 'New module created!',
-      data: _module
-    });
   });
 };
 // Handle view module info
@@ -41,12 +47,15 @@ exports.view = function(req, res) {
   Module.findById(req.params.module_id, function(err, _module) {
     if (err) {
       res.send(err);
+      console.log("GET /modules/:id FAILED")
+    } else {
+      res.json({
+        status: "success",
+        message: 'Module details loaded!',
+        data: _module
+      });
+      console.log("GET /modules/:id SUCCESS")
     }
-    res.json({
-      status: "success",
-      message: 'Module details loaded!',
-      data: _module
-    });
   });
 };
 // Handle update module info
@@ -54,6 +63,7 @@ exports.update = function(req, res) {
   Module.findById(req.params.module_id, function(err, _module) {
     if (err) {
       res.send(err);
+      console.log("PUT /modules/:id FAILED")
     }
     _module.name = req.body.name ? req.body.name : _module.name;
     _module.code = req.body.code;
@@ -62,12 +72,15 @@ exports.update = function(req, res) {
     _module.save(function(err) {
       if (err) {
         res.json(err);
+        console.log("PUT /modules/:id FAILED")
+      } else {
+        res.json({
+          status: "success",
+          message: 'Module Info updated',
+          data: _module
+        });
+        console.log("PUT /modules/:id SUCCESS")
       }
-      res.json({
-        status: "success",
-        message: 'Module Info updated',
-        data: _module
-      });
     });
   });
 };
@@ -78,11 +91,14 @@ exports.delete = function(req, res) {
   }, function(err, _module) {
     if (err) {
       res.send(err);
+      console.log("DELETE /modules/:id FAILED")
+    } else {
+      res.json({
+        status: "success",
+        message: 'Module deleted!',
+        data: _module
+      });
+      console.log("DELETE /modules/:id SUCCESS")
     }
-    res.json({
-      status: "success",
-      message: 'Module deleted!',
-      data: _module
-    });
   });
 };

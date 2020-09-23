@@ -16,7 +16,6 @@ router.route('/modules')
     .post(moduleController.new);
 router.route('/modules/:module_id')
     .get(moduleController.view)
-    .patch(moduleController.update)
     .put(moduleController.update)
     .delete(moduleController.delete);
 
