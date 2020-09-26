@@ -52,7 +52,7 @@ exports.handler = async function(event, context) {
         },
         body: JSON.stringify({
             status: "success",
-            message: 'New module added!',
+            message: 'New module added successfully',
             data: result
         })
         };

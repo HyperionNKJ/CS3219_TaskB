@@ -3,7 +3,11 @@ node_js:
   - 12
 deploy:
   - provider: script
-    script: node scripts/aws-lambda-deploy.js postApiMod production
+    script: node scripts/aws-lambda-deploy.js postApiMod production &&
+            node scripts/aws-lambda-deploy.js getApiMod production &&
+            node scripts/aws-lambda-deploy.js getApiModId production &&
+            node scripts/aws-lambda-deploy.js putApiModId production &&
+            node scripts/aws-lambda-deploy.js deleteApiModId production                       
     skip_cleanup: true
     on:
       branch: serverless
