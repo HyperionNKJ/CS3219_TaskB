@@ -1,6 +1,9 @@
 language: node_js
 node_js:
   - 12
-services:
-  - mongodb  
-script: npm run test
+deploy:
+  - provider: script
+    script: node scripts/aws-lambda-deploy.js postApiMod production
+    skip_cleanup: true
+    on:
+      branch: serverless
