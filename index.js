@@ -30,7 +30,7 @@ app.use('/api', apiRoutes) // whenever user visits /api path, use the routes def
 
 app.get('/', (req, res) => res.send('Welcome to ModTrack by Neo Kai Jun for CS3219 Task B'));
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8081;
 app.listen(port, function () {
      console.log("ModTrack running on port " + port);
 });
